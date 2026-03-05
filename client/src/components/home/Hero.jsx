@@ -10,7 +10,8 @@ const Hero = () => {
 
   return (
     <>
-    <div className="min-h-screen pb-0">
+    {/* <div className="min-h-screen pb-0"> */}
+    <div className="">
         {/* Navbar */}
         <nav className="z-50 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-40 text-sm">
             <a href="/">
@@ -24,12 +25,13 @@ const Hero = () => {
             </div>
 
             <div className="flex gap-2">
-                <Link to='/app?state=register' className="hidden md:block px-6 py-2 bg-blue-500 hover:bg-blue-700 active:scale-95 transition-all rounded-full text-white" hidden={user}>
-                    Get started
-                </Link>
                 <Link to='/app?state=login' className="hidden md:block px-6 py-2 border border-slate-300 active:scale-95 hover:bg-slate-50 transition-all rounded-full text-black hover:text-black" hidden={user}>
                     Login
                 </Link>
+                <Link to='/app?state=register' className="hidden md:block px-6 py-2 bg-blue-500 hover:bg-blue-700 active:scale-95 transition-all rounded-full text-white" hidden={user}>
+                    Get started
+                </Link>
+                
                 <Link to='/app' className='hidden md:block px-8 py-2 bg-blue-500 hover:bg-blue-700 active:scale-95 transition-all rounded-full text-white' hidden={!user}>
                     Dashboard
                 </Link>

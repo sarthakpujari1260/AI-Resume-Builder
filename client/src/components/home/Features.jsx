@@ -7,15 +7,17 @@ const Features = () => {
     const [isHover, setIsHover] = React.useState(false);
 
   return (
-    <div id='features' className='flex flex-col items-center mt-4 scroll-mt-12'>
+    // <div id='features' className='flex flex-col items-center mt-4 scroll-mt-12'>
+    <div id='features' className='flex flex-col items-center mt-[60px] scroll-mt-12'>
 
         {/* Badge */}
-        <div className="flex items-center gap-2 text-sm text-blue-600 bg-blue-400/10 rounded-full px-6 py-1.5">
+        {/* <div className="flex items-center gap-2 text-sm text-blue-600 bg-blue-400/10 rounded-full px-6 py-1.5"> */}
+        <div className="flex items-center gap-3 mt-6 text-[12px] text-black">
             <Zap width={14}/>
             <span>Simple Process</span>
         </div>
 
-        <Title title='Build your resume' description='Our streamlined process helps you create a professional resume in minutes with intelligent AI-powered tools and features.'/>
+        <Title title='Get Hired Faster With Resumefy' description='Our streamlined process helps you create a professional resume in minutes with intelligent AI-powered tools and features.'/>
 
         <div className="flex flex-col md:flex-row items-center gap-10 xl:gap-16 mt-10 px-4 md:px-10 lg:px-16 w-full max-w-6xl">
 
