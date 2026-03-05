@@ -4,6 +4,7 @@ import api from '../configs/api'
 import { useDispatch } from 'react-redux'
 import { login } from '../app/features/authSlice'
 import toast from 'react-hot-toast'
+import logo from "../assets/logo.svg"
 
 export default function Login() {
   const dispatch = useDispatch()
@@ -49,7 +50,7 @@ export default function Login() {
           <div style={{ position: 'absolute', bottom: -40, right: -40, width: 320, height: 320, background: 'rgba(125,211,252,0.15)', borderRadius: '50%', filter: 'blur(100px)' }} />
 
           <a href="/" style={{ position: 'relative', zIndex: 1 }}>
-            <img src="/logo.svg" alt="logo" style={{ height: 36, filter: 'brightness(0) invert(1)' }} />
+            <img src={logo} alt="logo" style={{ height: 36, filter: 'brightness(0) invert(1)' }} />
           </a>
 
           <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', gap: 32 }}>

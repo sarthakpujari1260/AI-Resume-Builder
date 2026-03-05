@@ -5,6 +5,7 @@ const connectDB = async () => {
         mongoose.connection.on("connected", ()=>{console.log("Database connected successfully")})
 
         let mongodbURL = process.env.MONGODB_URL
+        
         const projectName = 'resume-builder';
 
         if(!mongodbURL){

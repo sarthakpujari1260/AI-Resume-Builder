@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { logout } from '../app/features/authSlice'
+import logo from "../assets/logo.svg"
 
 const Navbar = () => {
   const { user } = useSelector(state => state.auth)
@@ -29,7 +30,7 @@ const Navbar = () => {
         boxShadow: '0 1px 8px rgba(0,0,0,0.05)',
       }}>
         <Link to='/'>
-          <img src="/logo.svg" alt="logo" style={{ height: '34px', width: 'auto' }} />
+          <img src={logo} alt="logo" style={{ height: '34px', width: 'auto' }} />
         </Link>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
