@@ -43,12 +43,6 @@ export const registerUser = async (req, res) => {
 export const loginUser = async (req, res) => {
     try {
         const { email, password} = req.body;
-        if(email.length == 0 || password.length ==0){
-            return res.json({
-                message:"Please enter the credentials"
-            })
-        }
-
         const user = await User.findOne({email})
         if(!user){
             return res.status(400).json({message: 'Invalid email '})
