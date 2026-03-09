@@ -1,10 +1,9 @@
 import imagekit from "../configs/imageKit.js";
 import Resume from "../models/Resume.js";
 import fs from 'fs';
-
+import { encryptData, decryptData } from "../utils/encryption.js";
 
 // controller for creating a new resume
-// POST: /api/resumes/create
 export const createResume = async (req, res) => {
     try {
         const userId = req.userId;
@@ -21,7 +20,6 @@ export const createResume = async (req, res) => {
 }
 
 // controller for deleting a resume
-// DELETE: /api/resumes/delete
 export const deleteResume = async (req, res) => {
     try {
         const userId = req.userId;
@@ -37,9 +35,7 @@ export const deleteResume = async (req, res) => {
     }
 }
 
-
 // get user resume by id
-// GET: /api/resumes/get
 export const getResumeById = async (req, res) => {
     try {
         const userId = req.userId;
@@ -50,6 +46,16 @@ export const getResumeById = async (req, res) => {
        if(!resume){
         return res.status(404).json({message: "Resume not found"})
        }
+
+        // decrypt resume data before sending to client
+        if(resume.encrypted_data){
+            const decrypted = decryptData(resume.encrypted_data)
+            resume.personal_info = decrypted.personal_info
+            resume.experience = decrypted.experience
+            resume.education = decrypted.education
+            resume.skills = decrypted.skills
+            resume.professional_summary = decrypted.professional_summary
+        }
 
         resume.__v = undefined;
         resume.createdAt = undefined;
@@ -63,7 +69,6 @@ export const getResumeById = async (req, res) => {
 }
 
 // get resume by id public
-// GET: /api/resumes/public
 export const getPublicResumeById = async (req, res) => {
     try {
         const { resumeId } = req.params;
@@ -80,7 +85,6 @@ export const getPublicResumeById = async (req, res) => {
 }
 
 // controller for updating a resume
-// PUT: /api/resumes/update
 export const updateResume = async (req, res) =>{
     try {
         const userId = req.userId;
@@ -95,8 +99,6 @@ export const updateResume = async (req, res) =>{
         }
 
         if(image){
-            
-
             const imageBufferData = fs.createReadStream(image.path)
 
             const response = await imagekit.files.upload({
@@ -111,9 +113,22 @@ export const updateResume = async (req, res) =>{
             resumeDataCopy.personal_info.image = response.url
         }
 
-       const resume = await Resume.findByIdAndUpdate({userId, _id: resumeId}, resumeDataCopy, {new: true})
+        // encrypt sensitive resume data before saving to database
+        const encrypted = encryptData({
+            personal_info: resumeDataCopy.personal_info,
+            experience: resumeDataCopy.experience,
+            education: resumeDataCopy.education,
+            skills: resumeDataCopy.skills,
+            professional_summary: resumeDataCopy.professional_summary
+        })
 
-       return res.status(200).json({message: 'Saved successfully', resume})
+        const resume = await Resume.findByIdAndUpdate(
+            {userId, _id: resumeId}, 
+            {...resumeDataCopy, encrypted_data: encrypted}, 
+            {new: true}
+        )
+
+        return res.status(200).json({message: 'Saved successfully', resume})
     } catch (error) {
         return res.status(400).json({message: error.message})
     }
