@@ -98,7 +98,7 @@ const saveResume = async () => {
   try {
     let updatedResumeData = structuredClone(resumeData)
 
-    // remove image from updatedResumeData
+
     if(typeof resumeData.personal_info.image === 'object'){
       delete updatedResumeData.personal_info.image
     }
@@ -129,14 +129,12 @@ const saveResume = async () => {
 
       <div className='max-w-7xl mx-auto px-4 pb-8'>
         <div className='grid lg:grid-cols-12 gap-8'>
-          {/* Left Panel - Form */}
           <div className='relative lg:col-span-5 rounded-lg overflow-hidden'>
             <div className='bg-white rounded-lg shadow-sm border border-gray-200 p-6 pt-1'>
-              {/* progress bar using activeSectionIndex */}
+  
               <hr className="absolute top-0 left-0 right-0 border-2 border-gray-200"/>
               <hr className="absolute top-0 left-0  h-1 bg-gradient-to-r from-green-500 to-green-600 border-none transition-all duration-2000" style={{width: `${activeSectionIndex * 100 / (sections.length - 1)}%`}}/>
 
-              {/* Section Navigation */}
               <div className="flex justify-between items-center mb-6 border-b border-gray-300 py-1">
 
                 <div className='flex items-center gap-2'>
@@ -156,7 +154,6 @@ const saveResume = async () => {
                 </div>
               </div>
 
-              {/* Form Content */}
               <div className='space-y-6'>
                   {activeSection.id === 'personal' && (
                     <PersonalInfoForm data={resumeData.personal_info} onChange={(data)=>setResumeData(prev => ({...prev, personal_info: data }))} removeBackground={removeBackground} setRemoveBackground={setRemoveBackground} />
@@ -184,7 +181,6 @@ const saveResume = async () => {
             </div>
           </div>
 
-          {/* Right Panel - Preview */}
           <div className='lg:col-span-7 max-lg:mt-6'>
               <div className='relative w-full'>
                 <div className='absolute bottom-3 left-0 right-0 flex items-center justify-end gap-2'>
