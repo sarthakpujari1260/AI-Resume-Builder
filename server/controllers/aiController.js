@@ -2,7 +2,6 @@ import Resume from "../models/Resume.js";
 import ai from "../configs/ai.js";
 
 // controller for enhancing a resume's professional summary
-// POST: /api/ai/enhance-pro-sum
 export const enhanceProfessionalSummary = async (req, res) => {
     try {
         const { userContent } = req.body;
@@ -30,7 +29,6 @@ export const enhanceProfessionalSummary = async (req, res) => {
 }
 
 // controller for enhancing a resume's job description
-// POST: /api/ai/enhance-job-desc
 export const enhanceJobDescription = async (req, res) => {
     try {
         const { userContent } = req.body;
@@ -59,7 +57,6 @@ export const enhanceJobDescription = async (req, res) => {
 }
 
 // controller for uploading a resume to the database
-// POST: /api/ai/upload-resume
 export const uploadResume = async (req, res) => {
     try {
        
