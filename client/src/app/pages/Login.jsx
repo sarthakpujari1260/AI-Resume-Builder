@@ -143,9 +143,9 @@ export default function Login() {
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <label style={{ fontSize: 11, color: '#9ca3af', fontWeight: 500 }}>Password</label>
-                    {state === 'login' && <span style={{ fontSize: 11, color: '#3b82f6', cursor: 'pointer' }}>Forgot password?</span>}
-                  </div>
+                <label style={{ fontSize: 11, color: '#9ca3af', fontWeight: 500 }}>Password</label>
+        {state === 'login' && <span style={{ fontSize: 11, color: '#3b82f6', cursor: 'pointer' }}>Forgot password?</span>}
+</div>
                   <div style={{ position: 'relative' }}>
                     <Lock size={13} style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: '#d1d5db', pointerEvents: 'none' }} />
                     <input type="password" name="password" placeholder="••••••••" value={formData.password} onChange={handleChange}
